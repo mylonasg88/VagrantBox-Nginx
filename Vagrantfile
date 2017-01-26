@@ -52,18 +52,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "shell", path: "./VagrantFiles/init.sh", name: "Installation"
   #config.vm.provision :shell, inline: "sleep 10; service postgresql restart;"
   #config.vm.provision :shell, inline: "service mysql restart;"
-  #config.vm.provision :shell, inline: "service apache2 restart;", run: "always"
+  config.vm.provision :shell, inline: "service apache2 restart;", run: "always"
 end
 
 Vagrant.configure("2") do |config|
-  config.vm.provision "do-this",
-    type: "shell",
-    preserve_order: true,
-    path: "./VagrantFiles/copy.expect", name: "Copy Files from remote"
-  config.vm.provision "then-this",
-    type: "shell",
-    preserve_order: true,
-    path: "./VagrantFiles/finish.sh", name: "Finish"
+    config.vm.provision "shell", path: "./VagrantFiles/finish.sh", name: "Finish"
 end
 
 #Set virtual domains
