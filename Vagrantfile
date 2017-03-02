@@ -8,7 +8,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Base Box
   # --------------------
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "ubuntu/xenial64"
   config.vm.hostname = "devbox.dev"
 
   # Connect to IP
@@ -46,13 +46,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # --------------------
   # config.vm.synced_folder ".", "/vagrant/", :mount_options => [ "dmode=777", "fmode=666" ]
   config.vm.synced_folder ".", "/var/www/devbox", :mount_options => [ "dmode=777", "fmode=666" ]
+  config.vm.synced_folder "./html", "/var/www/html", :mount_options => [ "dmode=777", "fmode=666" ]
+  config.vm.synced_folder "./vhosts", "/var/www/vhosts", :mount_options => [ "dmode=777", "fmode=666" ]
 
   # Provisioning Scripts
   # --------------------
   config.vm.provision "shell", path: "./VagrantFiles/init.sh", name: "Installation"
   #config.vm.provision :shell, inline: "sleep 10; service postgresql restart;"
   #config.vm.provision :shell, inline: "service mysql restart;"
-  config.vm.provision :shell, inline: "service apache2 restart;", run: "always"
+  #config.vm.provision :shell, inline: "service apache2 restart;", run: "always"
+  config.vm.provision :shell, inline: "service nginx restart;", run: "always"
 end
 
 Vagrant.configure("2") do |config|

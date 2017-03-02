@@ -22,8 +22,6 @@ echo nameserver 8.8.4.4 > /etc/resolv.conf
 # Add PHP and PostgreSQL repositories
 #
 LC_ALL=en_US.UTF-8 add-apt-repository -y ppa:ondrej/php
-apt-add-repository -y ppa:chris-lea/libsodium
-add-apt-repository -y ppa:chris-lea/redis-server
 touch /etc/apt/sources.list.d/pgdg.list
 echo -e "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main" | tee -a /etc/apt/sources.list.d/pgdg.list &>/dev/null
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
@@ -52,8 +50,6 @@ sudo apt-get install nodejs
 apt-get install -yq --no-install-suggests --no-install-recommends \
   mysql-server-5.6 \
   mysql-client-5.6 \
-  apache2 \
-  libapache2-mod-php5.6 \
   memcached \
   curl \
   htop \
@@ -123,15 +119,15 @@ apt-get install -yq --no-install-suggests --no-install-recommends expect
 # Update PECL channel
 #
 pecl channel-update pecl.php.net
+phpdismod xdebug redis
 
 #
 # Zephir
 #
-echo "export ZEPHIRDIR=/usr/share/zephir" >> /home/vagrant/.bashrc
-mkdir -p ${ZEPHIRDIR}
-phpdismod xdebug redis
-(cd /tmp && git clone git://github.com/phalcon/zephir.git && cd zephir && ./install -c)
-chown -R vagrant:vagrant ${ZEPHIRDIR}
+#echo "export ZEPHIRDIR=/usr/share/zephir" >> /home/vagrant/.bashrc
+#mkdir -p ${ZEPHIRDIR}
+#(cd /tmp && git clone git://github.com/phalcon/zephir.git && cd zephir && ./install -c)
+#chown -R vagrant:vagrant ${ZEPHIRDIR}
 
 #
 # Tune Up MySQL
@@ -153,25 +149,25 @@ curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin
 #
 # Tune UP PHP
 #
-sed -i 's/short_open_tag = Off/short_open_tag = On/' /etc/php/5.6/apache2/php.ini
-sed -i 's/error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT/error_reporting = E_ALL/' /etc/php/5.6/apache2/php.ini
-sed -i 's/display_errors = Off/display_errors = On/' /etc/php/5.6/apache2/php.ini
-sed -i '/\[Session\]/a session.save_path = "/tmp"' /etc/php/5.6/apache2/php.ini
+#sed -i 's/short_open_tag = Off/short_open_tag = On/' /etc/php/5.6/apache2/php.ini
+#sed -i 's/error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT/error_reporting = E_ALL/' /etc/php/5.6/apache2/php.ini
+#sed -i 's/display_errors = Off/display_errors = On/' /etc/php/5.6/apache2/php.ini
+#sed -i '/\[Session\]/a session.save_path = "/tmp"' /etc/php/5.6/apache2/php.ini
 phpenmod -v 5.6 -s ALL yaml mcrypt intl curl libsodium phalcon soap redis xdebug
 
 #
 # Tune Up Apache
 #
-sed -i 's/export APACHE_RUN_USER=www-data/export APACHE_RUN_USER=vagrant/' /etc/apache2/envvars
-sed -i 's/export APACHE_RUN_GROUP=www-data/export APACHE_RUN_GROUP=vagrant/' /etc/apache2/envvars
+#sed -i 's/export APACHE_RUN_USER=www-data/export APACHE_RUN_USER=vagrant/' /etc/apache2/envvars
+#sed -i 's/export APACHE_RUN_GROUP=www-data/export APACHE_RUN_GROUP=vagrant/' /etc/apache2/envvars
 
 #
 # Apache VHost
 #
 cd ~
 
-cp /var/www/devbox/VagrantFiles/devbox.dev.conf /etc/apache2/sites-available
-a2enmod rewrite
+#cp /var/www/devbox/VagrantFiles/devbox.dev.conf /etc/apache2/sites-available
+#a2enmod rewrite
 
 #
 # Setup Xdebug
@@ -183,9 +179,17 @@ echo 'xdebug.remote_enable = on
 #
 # Reload apache
 #
-a2ensite devbox.dev.conf
-a2dissite 000-default
-service apache2 reload
+#a2ensite devbox.dev.conf
+#a2dissite 000-default
+#service apache2 reload
+
+#
+# Install Nginx
+#
+sudo apt-get install -yq --no-install-suggests --no-install-recommends \
+    nginx
+
+sudo ln -s /var/www/devbox/VagrantFiles/devbox.dev-nginx.conf /etc/nginx/sites-enabled/
 
 ############################################################
 # Install ZSH
