@@ -97,7 +97,6 @@ apt-get install -yq --no-install-suggests --no-install-recommends \
   php5.6-mysql \
   php-pear \
   php5.6-odbc \
-  php5.6-pgsql \
   php5.6-ps \
   php5.6-pspell \
   php5.6-redis \
@@ -110,6 +109,7 @@ apt-get install -yq --no-install-suggests --no-install-recommends \
   php5.6-xmlrpc \
   php5.6-xsl \
   php5.6-zip
+  #php5.6-pgsql \
 
 echo "apc.enable_cli = 1" >> /etc/php/5.6/mods-available/apcu.ini
 
