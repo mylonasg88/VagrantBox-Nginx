@@ -9,7 +9,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Base Box
   # --------------------
   config.vm.box = "ubuntu/xenial64"
-  config.vm.hostname = "devbox.dev"
+  config.vm.hostname = "nginx-devbox.dev"
 
   # Connect to IP
   # Note: Use an IP that doesn't conflict with any OS's DHCP (Below is a safe bet)
@@ -54,8 +54,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "shell", path: "./VagrantFiles/init.sh", name: "Installation"
   #config.vm.provision :shell, inline: "sleep 10; service postgresql restart;"
   #config.vm.provision :shell, inline: "service mysql restart;"
-  #config.vm.provision :shell, inline: "service apache2 restart;", run: "always"
   config.vm.provision :shell, inline: "service nginx restart;", run: "always"
+  config.vm.provision :shell, path: "./VagrantFiles/finish.sh", run: "always", name: "Finish"
 end
 
 Vagrant.configure("2") do |config|

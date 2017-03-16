@@ -2,7 +2,7 @@
 
 echo -e "\x1b[36m#############################################################################"
 echo -e "\x1b[36m----------------------------------------                                    #"
-echo -e "\x1b[36mDevbox is setup. You can start hacking:                                     #"
+echo -e "\x1b[36mNginx Devbox is setup. You can start hacking:                               #"
 echo -e "\x1b[36m----------------------------------------                                    #"
 echo -e "\x1b[36m$ cd /var/www/devbox                                                        #"
 
@@ -14,6 +14,6 @@ echo -e "\x1b[36m----------------------------------------                       
 
 echo -e "\x1b[36m----------------------------------------                                    #"
 echo -e "\x1b[36mDefault Site ip : 10.0.0.20                                                 #"
-echo -e "\x1b[36mDefault Site URL: http://devbox.dev                                         #"
+echo -e "\x1b[36mDefault Site URL: http://nginx-devbox.dev                                   #"
 echo -e "\x1b[36m----------------------------------------                                    #"
 echo -e "\x1b[36m#############################################################################"

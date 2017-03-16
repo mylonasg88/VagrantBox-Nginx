@@ -149,25 +149,9 @@ curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin
 #
 # Tune UP PHP
 #
-#sed -i 's/short_open_tag = Off/short_open_tag = On/' /etc/php/5.6/apache2/php.ini
-#sed -i 's/error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT/error_reporting = E_ALL/' /etc/php/5.6/apache2/php.ini
-#sed -i 's/display_errors = Off/display_errors = On/' /etc/php/5.6/apache2/php.ini
-#sed -i '/\[Session\]/a session.save_path = "/tmp"' /etc/php/5.6/apache2/php.ini
 phpenmod -v 5.6 -s ALL yaml mcrypt intl curl libsodium phalcon soap redis xdebug
 
-#
-# Tune Up Apache
-#
-#sed -i 's/export APACHE_RUN_USER=www-data/export APACHE_RUN_USER=vagrant/' /etc/apache2/envvars
-#sed -i 's/export APACHE_RUN_GROUP=www-data/export APACHE_RUN_GROUP=vagrant/' /etc/apache2/envvars
-
-#
-# Apache VHost
-#
 cd ~
-
-#cp /var/www/devbox/VagrantFiles/devbox.dev.conf /etc/apache2/sites-available
-#a2enmod rewrite
 
 #
 # Setup Xdebug
@@ -177,19 +161,13 @@ echo 'xdebug.remote_enable = on
     xdebug.idekey = "vagrant"' >> /etc/php/5.6/mods-available/xdebug.ini
 
 #
-# Reload apache
-#
-#a2ensite devbox.dev.conf
-#a2dissite 000-default
-#service apache2 reload
-
-#
 # Install Nginx
 #
 sudo apt-get install -yq --no-install-suggests --no-install-recommends \
     nginx
 
-sudo ln -s /var/www/devbox/VagrantFiles/devbox.dev-nginx.conf /etc/nginx/sites-enabled/
+sudo ln -s /var/www/devbox/VagrantFiles/nginx-devbox.dev.conf /etc/nginx/sites-enabled/
+sudo service nginx restart
 
 ############################################################
 # Install ZSH
