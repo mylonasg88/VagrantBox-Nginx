@@ -122,14 +122,6 @@ pecl channel-update pecl.php.net
 phpdismod xdebug redis
 
 #
-# Zephir
-#
-#echo "export ZEPHIRDIR=/usr/share/zephir" >> /home/vagrant/.bashrc
-#mkdir -p ${ZEPHIRDIR}
-#(cd /tmp && git clone git://github.com/phalcon/zephir.git && cd zephir && ./install -c)
-#chown -R vagrant:vagrant ${ZEPHIRDIR}
-
-#
 # Tune Up MySQL
 #
 cp /etc/mysql/my.cnf /etc/mysql/my.bkup.cnf
@@ -138,8 +130,8 @@ sed -i 's/bind-address/bind-address = 0.0.0.0#/' /etc/mysql/my.cnf
 mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'root' WITH GRANT OPTION;"
 mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'vagrant'@'%' IDENTIFIED BY 'vagrant' WITH GRANT OPTION; FLUSH PRIVILEGES;"
 
-#echo 'create database fusion_dev;' | mysql --user=vagrant --password=vagrant
-#mysql --user=vagrant --password=vagrant fusion_dev < /var/www/fusion/VagrantFiles/fusion_live_2016-11-15.sql
+#echo 'create database forum_dev;' | mysql --user=vagrant --password=vagrant
+#mysql --user=vagrant --password=vagrant forum_dev < /var/www/forum/VagrantFiles/forum_dev.sql
 
 #
 # Composer for PHP

@@ -1,5 +1,5 @@
 .vagrant
 .idea
 .DS_Store
-html/*
+#html/*
 vhosts/*
