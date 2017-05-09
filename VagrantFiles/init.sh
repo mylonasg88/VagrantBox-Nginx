@@ -126,7 +126,6 @@ phpdismod xdebug redis
 #
 cp /etc/mysql/my.cnf /etc/mysql/my.bkup.cnf
 sed -i 's/bind-address/bind-address = 0.0.0.0#/' /etc/mysql/my.cnf
-#mysql -u root -Bse "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'root' WITH GRANT OPTION;"
 mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'root' WITH GRANT OPTION;"
 mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'vagrant'@'%' IDENTIFIED BY 'vagrant' WITH GRANT OPTION; FLUSH PRIVILEGES;"
 
