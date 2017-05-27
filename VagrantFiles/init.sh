@@ -70,48 +70,54 @@ apt-get install -yq --no-install-suggests --no-install-recommends \
 #
 # Base PHP
 #
+#
+# Base PHP
+#
 apt-get install -yq --no-install-suggests --no-install-recommends \
-  php5.6 \
-  php5.6-apcu \
-  php5.6-bcmath \
-  php5.6-bz2 \
-  php5.6-cli \
-  php5.6-common \
-  php5.6-curl \
-  php5.6-dba \
-  php5.6-dev \
-  php5.6-gd \
-  php5.6-gearman \
-  php5.6-gettext \
-  php5.6-gmp \
-  php5.6-imagick \
-  php5.6-imap \
-  php5.6-intl \
-  php5.6-json \
-  php5.6-mbstring \
-  php5.6-memcached \
-  php5.6-memcache \
-  php5.6-mcrypt \
-  php5.6-mongo \
-  php5.6-mongodb \
-  php5.6-mysql \
   php-pear \
-  php5.6-odbc \
-  php5.6-ps \
-  php5.6-pspell \
-  php5.6-redis \
-  php5.6-readline \
-  php5.6-recode \
-  php5.6-soap \
-  php5.6-sqlite3 \
-  php5.6-tidy \
-  php5.6-xdebug \
-  php5.6-xmlrpc \
-  php5.6-xsl \
-  php5.6-zip
-  #php5.6-pgsql \
+  php7.1-cli \
+  php7.1-cgi \
+  php7.1-fpm \
+  php7.1 \
+  php7.1-apcu \
+  php7.1-bcmath \
+  php7.1-bz2 \
+  php7.1-cli \
+  php7.1-common \
+  php7.1-curl \
+  php7.1-dba \
+  php7.1-dev \
+  php7.1-gd \
+  php7.1-gearman \
+  php7.1-gettext \
+  php7.1-gmp \
+  php7.1-imagick \
+  php7.1-imap \
+  php7.1-intl \
+  php7.1-json \
+  php7.1-mbstring \
+  php7.1-memcached \
+  php7.1-memcache \
+  php7.1-mcrypt \
+  php7.1-mongo \
+  php7.1-mongodb \
+  php7.1-mysql \
+  php7.1-odbc \
+  php7.1-ps \
+  php7.1-pspell \
+  php7.1-redis \
+  php7.1-readline \
+  php7.1-recode \
+  php7.1-soap \
+  php7.1-sqlite3 \
+  php7.1-tidy \
+  php7.1-xdebug \
+  php7.1-xmlrpc \
+  php7.1-xsl \
+  php7.1-zip \
+  php7.1-pgsql
 
-echo "apc.enable_cli = 1" >> /etc/php/5.6/mods-available/apcu.ini
+#echo "apc.enable_cli = 1" >> /etc/php/5.6/mods-available/apcu.ini
 
 apt-get install -yq --no-install-suggests --no-install-recommends expect
 
@@ -140,7 +146,7 @@ curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin
 #
 # Tune UP PHP
 #
-phpenmod -v 5.6 -s ALL yaml mcrypt intl curl libsodium phalcon soap redis xdebug
+phpenmod -v 7.1 -s ALL yaml mcrypt intl curl soap redis xdebug
 
 cd ~
 
@@ -149,7 +155,7 @@ cd ~
 #
 echo 'xdebug.remote_enable = on
     xdebug.remote_connect_back = on
-    xdebug.idekey = "vagrant"' >> /etc/php/5.6/mods-available/xdebug.ini
+    xdebug.idekey = "vagrant"' >> /etc/php/7.1/mods-available/xdebug.ini
 
 #
 # Install Nginx
