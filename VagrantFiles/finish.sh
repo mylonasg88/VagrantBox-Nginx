@@ -14,6 +14,6 @@ echo -e "\x1b[36m----------------------------------------                       
 
 echo -e "\x1b[36m----------------------------------------                                    #"
 echo -e "\x1b[36mDefault Site ip : 10.0.0.20                                                 #"
-echo -e "\x1b[36mDefault Site URL: http://nginx-devbox.dev                                   #"
+echo -e "\x1b[36mDefault Site URL: http://nginx-devbox.com                                   #"
 echo -e "\x1b[36m----------------------------------------                                    #"
 echo -e "\x1b[36m#############################################################################"
