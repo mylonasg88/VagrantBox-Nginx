@@ -88,7 +88,6 @@ apt-get install -yq --no-install-suggests --no-install-recommends \
   php7.1-dba \
   php7.1-dev \
   php7.1-gd \
-  php7.1-gearman \
   php7.1-gettext \
   php7.1-gmp \
   php7.1-imagick \
@@ -164,6 +163,7 @@ sudo apt-get install -yq --no-install-suggests --no-install-recommends \
     nginx
 
 sudo ln -s /var/www/devbox/VagrantFiles/nginx-devbox.dev.conf /etc/nginx/sites-enabled/
+sudo chmod 777 /var/log/nginx/error.log
 sudo service nginx restart
 
 ############################################################
@@ -176,7 +176,7 @@ if [ ! -d ~vagrant/.oh-my-zsh ]; then
   git clone https://github.com/robbyrussell/oh-my-zsh.git ~vagrant/.oh-my-zsh
 fi
 
-# Create a new zsh configuration from the provided template
+# Create a new zsh configuration from the provided template.
 cp ~vagrant/.oh-my-zsh/templates/zshrc.zsh-template ~vagrant/.zshrc
 
 # Change ownership of .zshrc
@@ -190,6 +190,9 @@ sed -i -e 's/# Example aliases/source ~\/.bash_aliases/gi' ~vagrant/.zshrc
 
 # Set zsh as default shell
 chsh -s /bin/zsh vagrant
+
+# Copy zsh template with Git disabled for speed performance.
+cp /var/www/devbox/VagrantFiles/ys.zsh-theme /home/vagrant/.oh-my-zsh/themes
 
 #
 ##
